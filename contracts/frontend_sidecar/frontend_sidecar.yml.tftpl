@@ -1,0 +1,38 @@
+version: '2.4'
+
+networks:
+  cs-network:
+    external: false
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.10.0/24
+
+services:
+  frontend_sidecar:
+    image: ${tpl.image}
+    networks:
+      - cs-network
+    ports:
+      - "$${PORT}:$${PORT}"
+      - "$${SSH_PORT}:22"
+    environment:
+      ARGON2_SALT: $${ARGON2_SALT}
+      COS_API_KEY: $${COS_API_KEY}
+      COS_ID: $${COS_ID}
+      DAP_BACKUP_BUCKET: $${DAP_BACKUP_BUCKET}
+      DEPLOY_TIME_SECRET: $${DEPLOY_TIME_SECRET}
+      OLD_DEPLOY_TIME_SECRET: $${OLD_DEPLOY_TIME_SECRET}
+      SSH_PUBKEY: $${SSH_PUBKEY}
+      PORT: $${PORT}
+      COMPONENT_CERTS: $${COMPONENT_CERTS}
+      FRONTEND_KEY: $${FRONTEND_KEY}
+      FRONTEND_CERT: $${FRONTEND_CERT}
+      CLIENT_CERTS_ENABLED: $${CLIENT_CERTS_ENABLED}
+      MTLS_ENABLED: $${MTLS_ENABLED}
+      SYSLOG_HOSTNAME: $${SYSLOG_HOSTNAME}
+      SYSLOG_PORT: $${SYSLOG_PORT}
+      SYSLOG_SERVER_CERT: $${SYSLOG_SERVER_CERT}
+      SYSLOG_CLIENT_CERT: $${SYSLOG_CLIENT_CERT}
+      SYSLOG_CLIENT_KEY: $${SYSLOG_CLIENT_KEY}
