@@ -1,0 +1,18 @@
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/src/backend_sidecar"
+  schedule:
+    interval: daily
+  groups:
+    python-packages:
+      patterns:
+        - "*"
+- package-ecosystem: pip
+  directory: "/src/frontend_sidecar"
+  schedule:
+    interval: daily
+  groups:
+    python-packages:
+      patterns:
+        - "*"
