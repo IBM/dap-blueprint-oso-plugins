@@ -10,13 +10,13 @@ import dbaas
 
 class DBaaSClient:
 
-    def __init__(self, reboot=True):
+    def __init__(self):
         self.query = {'$or': [{'request.type': {'$eq': x}} for x in dap_consts.REQUEST_TYPES + [dap_consts.INTERNAL_OPERATION]],
                       dap_consts.SIGNING_SERVICE: {'$eq': None}}
         for serviceid in dap_consts.POLICY_SERVICES:
             self.query[serviceid] = {'$ne': None}
         print('query={}'.format(self.query))
-        self.resource = dap_resource.DAPDBaaSResource(reboot=reboot, serviceid=serviceid, ca_file=os.environ['DBAAS_CA_FILE'])
+        self.resource = dap_resource.DAPDBaaSResource(serviceid=serviceid)
 
     def dequeue_to_dir(self, save_dir):
         docs = dbaas.dequeue_all(self.resource.txqueue_client, self.resource.queue_name, self.query)

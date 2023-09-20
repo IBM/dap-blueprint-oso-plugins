@@ -8,7 +8,6 @@ This repo maintains the document and code to define [Digital Asset Platform Blue
 | --------------------- | --------------------------------------------------------------------------- |
 | REGISTRY_URL          | URL of your IBM container registry (e.g., us.icr.io). |
 | REGISTRY_NAMESPACE    | IBM container registry namespace which you created at Prerequisites 3 (e.g., dap-blueprint). |
-| DBAAS_CA              | HPDBaaS certificate authority which you downloaded at Prerequisites 6. Please paste the content of a downloaded certificate authority file without `-----BEGIN CERTIFICATE-----` and `-----END CERTIFICATE-----`. |
 | BUILD_TIME_SECRET     | An arbitrary string used as a build-time secret. This secret is used to generate signing and encryption keys with `DEPLOY_TIME_SECRET` which is specified at deploy time. |
 | OLD_BUILD_TIME_SECRET | A build-time secret used at the previous build. This is needed only for key rotation. In general, please keep empty like `OLD_BUILD_TIME_SECRET=`. |
 
@@ -16,7 +15,6 @@ This repo maintains the document and code to define [Digital Asset Platform Blue
 ```
 export REGISTRY_URL=us.icr.io
 export REGISTRY_NAMESPACE=<REGISTRY_NAMESPACE>
-export DBAAS_CA=<CA>
 export BUILD_TIME_SECRET=<BUILD_TIME_SECERT>
 OLD_BUILD_TIME_SECRET=<OLD_BUILD_TIME_SECRET>
 

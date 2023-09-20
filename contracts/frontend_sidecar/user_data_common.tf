@@ -49,6 +49,10 @@ locals {
       "SYSLOG_SERVER_CERT": var.SYSLOG_SERVER_CERT,
       "SYSLOG_CLIENT_CERT": var.SYSLOG_CLIENT_CERT,
       "SYSLOG_CLIENT_KEY": var.SYSLOG_CLIENT_KEY,
+      "TXQUEUE_HOST": var.TXQUEUE_HOST,
+      "TXQUEUE_PORT": var.TXQUEUE_PORT,
+      "TXQUEUE_CERT": var.TXQUEUE_CERT,
+      "TXQUEUE_CA": var.TXQUEUE_CA,
     }
   }
   workload_template = {
