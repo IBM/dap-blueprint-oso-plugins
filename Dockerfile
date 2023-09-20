@@ -35,7 +35,7 @@ RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:${PATH}"
 RUN python3 -m pip install --upgrade pip && \
     pip3 install -U setuptools distlib wheel virtualenv
-RUN git clone --depth=1 https://github.com/IBM/dap-blueprint.git && \
+RUN git clone --depth=1 https://github.com/IBM/dap-blueprint.git -b v1.0.0 && \
     pip3 install -e ./dap-blueprint/src/dap_util
 COPY  ./requirements.txt /app-root/
 RUN pip3 install -r requirements.txt
