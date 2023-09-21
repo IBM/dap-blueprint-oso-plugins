@@ -16,6 +16,10 @@ echo "${COMPONENT_CERTS}" | base64 --decode | gzip --decompress > /certs/compone
 echo "${FRONTEND_CERT}" | base64 --decode | gzip --decompress > /certs/frontend-certificate.pem
 echo "${FRONTEND_KEY}" | base64 --decode | gzip --decompress > /certs/frontend-key.pem
 
+mkdir -p /certs/txqueue
+echo "${TXQUEUE_CERT}" > /certs/txqueue/mongo-client.pem
+echo "${TXQUEUE_CA}" > /certs/txqueue/root-ca.pem
+
 LOGDNA_TAG=frontend_sidecar
 CONF_FILE=supervisord-frontend_sidecar.conf
 

@@ -160,3 +160,25 @@ variable "SYSLOG_CLIENT_KEY" {
   sensitive   = true
   description = "Syslog server client key"
 }
+
+variable "TXQUEUE_HOST" {
+  type        = string
+  description = "Mongo TXQUEUE databasea fqdn host (note should not be the floating ip address)"
+}
+
+variable "TXQUEUE_PORT" {
+  type        = string
+  description = "Mongo TXQUEUE database port number"
+}
+
+variable "TXQUEUE_CERT" {
+  type        = string
+  sensitive   = true
+  description = "Mongo TXQUEUE client certificate"
+}
+
+variable "TXQUEUE_CA" {
+  type        = string
+  sensitive   = true
+  description = "Mongo TXQUEUE ca"
+}
