@@ -9,7 +9,6 @@ $(sidecars):
 	docker build \
 		--build-arg BUILD_TIME_SECRET=$(BUILD_TIME_SECRET) \
 		--build-arg OLD_BUILD_TIME_SECRET=$(OLD_BUILD_TIME_SECRET) \
-		--build-arg DBAAS_CA=$(DBAAS_CA) \
 		src/$@ -t $@:latest -t $(REGISTRY_URL)/$(REGISTRY_NS)/$@:latest -f Dockerfile
 	if [ -n '$(DEBUG)' ]; then \
 		docker build \

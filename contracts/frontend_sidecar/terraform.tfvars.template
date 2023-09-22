@@ -28,6 +28,14 @@ EOT
 SYSLOG_CLIENT_KEY=<<-EOT
 EOT
 
+# Database Configuraiton
+TXQUEUE_HOST=""
+TXQUEUE_PORT="27017"
+TXQUEUE_CERT=<<-EOT
+EOT
+TXQUEUE_CA=<<-EOT
+EOT
+
 # Service Configuration
 FRONTEND_CERT=<<-EOT
 EOT

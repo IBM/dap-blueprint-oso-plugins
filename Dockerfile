@@ -35,15 +35,11 @@ RUN python3 -m venv /opt/venv
 ENV PATH="/opt/venv/bin:${PATH}"
 RUN python3 -m pip install --upgrade pip && \
     pip3 install -U setuptools distlib wheel virtualenv
-RUN git clone --depth=1 https://github.com/IBM/dap-blueprint.git && \
+RUN git clone --depth=1 https://github.com/IBM/dap-blueprint.git -b v1.0.0 && \
     pip3 install -e ./dap-blueprint/src/dap_util
 COPY  ./requirements.txt /app-root/
 RUN pip3 install -r requirements.txt
 RUN pip3 install supervisor
-
-ARG DBAAS_CA=unused
-ENV DBAAS_CA_FILE=/opt/dbaas_ca.cert
-RUN printf -- "-----BEGIN CERTIFICATE-----\n%s\n-----END CERTIFICATE-----" "${DBAAS_CA}" > ${DBAAS_CA_FILE}
 
 # Base image, context should be plugin src directory
 FROM ubuntu:focal as runtime
@@ -53,7 +49,6 @@ ARG BUILD_TIME_SECRET
 ARG OLD_BUILD_TIME_SECRET
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONUNBUFFERED=1
-ENV DBAAS_CA_FILE=/opt/dbaas_ca.cert
 ENV BUILD_TIME_SECRET=${BUILD_TIME_SECRET}
 ENV OLD_BUILD_TIME_SECRET=${OLD_BUILD_TIME_SECRET}
 
@@ -67,7 +62,6 @@ ENV PATH="${PATH}"
 
 WORKDIR /app-root
 COPY --from=python-bootstrap /opt/venv /opt/venv
-COPY --from=python-bootstrap ${DBAAS_CA_FILE} ${DBAAS_CA_FILE}
 COPY --from=python-bootstrap /app-root/dap-blueprint/src/dap_util /app-root/dap-blueprint/src/dap_util
 
 ENV PATH="/opt/venv/bin:${PATH}"
