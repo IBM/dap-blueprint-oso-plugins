@@ -6,12 +6,6 @@
 
 # entrypoint for nginx
 touch /tmp/certs.pem
-if [ "${CLIENT_CERTS_ENABLED}" = "true" ]; then
-  true
-fi
-if [ "${MTLS_ENABLED}" = "true" ]; then
-  true
-fi
 
 # Get array of Content Names
 CN_ARRAY=($(openssl storeutl -noout -text /certs/component-bundle.pem | grep 'Subject:' | sed -n 's/.*CN=//p'))
@@ -38,15 +32,13 @@ for item in "${COMPONENT_CN_ARRAY[@]}"; do
   delim="|"
 done
 
-if [ "${CLIENT_CERTS_ENABLED}" = "true" ] || [ "${MTLS_ENABLED}" = "true" ]; then
-  echo 'Starting envsubst'
-  HOSTNAME="https://dapcs.ibm.com" COMPONENT_DN="$joined" envsubst '\$PORT \$HOSTNAME \$COMPONENT_DN' < /app-root/nginx/nginx.conf.template > /app-root/nginx/nginx.conf
-  echo 'Starting nginx'
-  nginx -c /app-root/nginx/nginx.conf -g 'daemon off;' &
-  # Wait for the Nginx process to finish
-  NGINX_PID=$!
-  wait $NGINX_PID
+echo 'Starting envsubst'
+HOSTNAME="https://dapcs.ibm.com" COMPONENT_DN="$joined" envsubst '\$PORT \$HOSTNAME \$COMPONENT_DN' < /app-root/nginx/nginx.conf.template > /app-root/nginx/nginx.conf
+echo 'Starting nginx'
+nginx -c /app-root/nginx/nginx.conf -g 'daemon off;' &
+# Wait for the Nginx process to finish
+NGINX_PID=$!
+wait $NGINX_PID
 
-  # Exit with the same exit code as the Nginx process
-  exit $?
-fi
+# Exit with the same exit code as the Nginx process
+exit $?
