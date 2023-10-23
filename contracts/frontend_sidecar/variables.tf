@@ -2,12 +2,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-variable DEBUG {
-  type        = bool
-  description = "Create debug contracts, plaintext"
-  default     = false
-}
-
 variable HPCR_CERT {
   type        = string
   description = "Public HPCR certificate for contract encryption"
@@ -39,18 +33,6 @@ variable REGISTRY_INSECURE {
   type        = bool
   description = "Set registry to insecure, private registry with self-signed certificate"
   default     = false
-}
-
-variable NOTARY_URL {
-  type        = string
-  description = "URL of your notary server"
-  default     = ""
-}
-
-variable DCT_PUBKEY {
-  type        = string
-  description = "Public key for docker content trust."
-  default     = ""
 }
 
 variable "SSH_PUBKEY" {
@@ -107,7 +89,7 @@ variable "PORT" {
   default     = "4000"
 }
 
-variable "COMPONENT_CERTS" {
+variable "COMPONENT_CA_CERT" {
   type        = string
   description = "Base64 encoded gzip of the component certificate bundle pem file"
 }
@@ -121,18 +103,6 @@ variable "FRONTEND_KEY" {
 variable "FRONTEND_CERT" {
   type        = string
   description = "Base64 encoded gzip of the frontend sidecar cert pem file"
-}
-
-variable "CLIENT_CERTS_ENABLED" {
-  type        = string
-  description = "Enable client cert"
-  default     = "true"
-}
-
-variable "MTLS_ENABLED" {
-  type        = string
-  description = "Enable component mtls"
-  default     = "true"
 }
 
 variable "SYSLOG_HOSTNAME" {
@@ -159,26 +129,4 @@ variable "SYSLOG_CLIENT_KEY" {
   type        = string
   sensitive   = true
   description = "Syslog server client key"
-}
-
-variable "TXQUEUE_HOST" {
-  type        = string
-  description = "Mongo TXQUEUE databasea fqdn host (note should not be the floating ip address)"
-}
-
-variable "TXQUEUE_PORT" {
-  type        = string
-  description = "Mongo TXQUEUE database port number"
-}
-
-variable "TXQUEUE_CERT" {
-  type        = string
-  sensitive   = true
-  description = "Mongo TXQUEUE client certificate"
-}
-
-variable "TXQUEUE_CA" {
-  type        = string
-  sensitive   = true
-  description = "Mongo TXQUEUE ca"
 }

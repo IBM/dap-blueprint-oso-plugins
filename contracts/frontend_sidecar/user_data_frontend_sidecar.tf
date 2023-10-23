@@ -7,6 +7,16 @@ resource "local_file" "frontend_sidecar_docker_compose" {
     "${path.module}/frontend_sidecar.yml.tftpl",
     { tpl = {
       image = var.SIDECAR_IMAGE,
+      ARGON2_SALT = var.ARGON2_SALT,
+      COS_API_KEY: var.COS_API_KEY,
+      COS_ID: var.COS_ID,
+      DAP_BACKUP_BUCKET: var.DAP_BACKUP_BUCKET,
+      DEPLOY_TIME_SECRET: var.DEPLOY_TIME_SECRET,
+      OLD_DEPLOY_TIME_SECRET: var.OLD_DEPLOY_TIME_SECRET,
+      TXQUEUE_HOST: var.TXQUEUE_HOST,
+      TXQUEUE_PORT: var.TXQUEUE_PORT,
+      TXQUEUE_CERT: var.TXQUEUE_CERT,
+      TXQUEUE_CA: var.TXQUEUE_CA,
     } },
   )
   filename = "frontend_sidecar/docker-compose.yml"
@@ -43,7 +53,6 @@ resource "hpcr_contract_encrypted" "frontend_sidecar_contract" {
 }
 
 resource "local_file" "frontend_sidecar_contract" {
-  count    = var.DEBUG ? 1 : 0
   content  = local.frontend_sidecar_contract
   filename = "frontend_sidecar_contract.yml"
   file_permission = "0664"
