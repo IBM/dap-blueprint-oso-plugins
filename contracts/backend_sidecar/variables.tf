@@ -75,9 +75,14 @@ variable "PORT" {
   default     = "4000"
 }
 
-variable "COMPONENT_CERTS" {
+variable "BRIDGE_FINGERPRINT" {
   type        = string
-  description = "Base64 encoded gzip of the component certificate bundle pem file"
+  description = "SHA-1 fingerprint of the bridge cert"
+}
+
+variable "COMPONENT_CA_CERT" {
+  type        = string
+  description = "CA cert pem file that the component certs are signed by"
 }
 
 variable "BACKEND_KEY" {
