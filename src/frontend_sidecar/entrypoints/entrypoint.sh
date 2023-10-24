@@ -12,7 +12,7 @@ chmod 600 /root/.ssh/authorized_keys
 mkdir -p /certs
 
 # Write certs to file
-echo "${COMPONENT_CA_CERT}" > /certs/component-bundle.pem
+echo "${COMPONENT_CA_CERT}" | base64 --decode | gzip --decompress > /certs/component-bundle.pem
 echo "${FRONTEND_CERT}" > /certs/frontend-certificate.pem
 echo "${FRONTEND_KEY}" > /certs/frontend-key.pem
 
