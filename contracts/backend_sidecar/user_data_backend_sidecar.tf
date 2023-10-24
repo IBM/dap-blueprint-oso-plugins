@@ -7,6 +7,7 @@ resource "local_file" "backend_sidecar_docker_compose" {
     "${path.module}/backend_sidecar.yml.tftpl",
     { tpl = {
       image = var.SIDECAR_IMAGE,
+      BACKEND_ENDPOINT = var.BACKEND_ENDPOINT,
     } },
   )
   filename = "backend_sidecar/docker-compose.yml"
@@ -43,7 +44,6 @@ resource "hpcr_contract_encrypted" "backend_sidecar_contract" {
 }
 
 resource "local_file" "backend_sidecar_contract" {
-  count    = var.DEBUG ? 1 : 0
   content  = local.backend_sidecar_contract
   filename = "backend_sidecar_contract.yml"
   file_permission = "0664"

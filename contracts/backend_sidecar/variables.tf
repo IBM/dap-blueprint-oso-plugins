@@ -2,12 +2,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-variable DEBUG {
-  type        = bool
-  description = "Create debug contracts, plaintext"
-  default     = false
-}
-
 variable HPCR_CERT {
   type        = string
   description = "Public HPCR certificate for contract encryption"
@@ -41,18 +35,6 @@ variable REGISTRY_INSECURE {
   default     = false
 }
 
-variable NOTARY_URL {
-  type        = string
-  description = "URL of your notary server"
-  default     = ""
-}
-
-variable DCT_PUBKEY {
-  type        = string
-  description = "Public key for docker content trust."
-  default     = ""
-}
-
 variable "SSH_PUBKEY" {
   type        = string
   description = "SSH public key to access a sidecar container (should be used only for debugging)."
@@ -75,7 +57,7 @@ variable "PORT" {
   default     = "4000"
 }
 
-variable "COMPONENT_CERTS" {
+variable "COMPONENT_CA_CERT" {
   type        = string
   description = "Base64 encoded gzip of the component certificate bundle pem file"
 }
@@ -89,18 +71,6 @@ variable "BACKEND_KEY" {
 variable "BACKEND_CERT" {
   type        = string
   description = "Base64 encoded gzip of the backend sidecar cert pem file"
-}
-
-variable "CLIENT_CERTS_ENABLED" {
-  type        = string
-  description = "Enable client cert"
-  default     = "true"
-}
-
-variable "MTLS_ENABLED" {
-  type        = string
-  description = "Enable component mtls"
-  default     = "true"
 }
 
 variable "SYSLOG_HOSTNAME" {

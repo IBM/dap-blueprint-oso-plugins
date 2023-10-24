@@ -92,20 +92,17 @@ variable "PORT" {
 variable "COMPONENT_CA_CERT" {
   type        = string
   description = "Base64 encoded gzip of the component certificate bundle pem file"
-  default     = ""
 }
 
 variable "FRONTEND_KEY" {
   type        = string
   description = "Base64 encoded gzip of the frontend sidecar key pem file"
   sensitive   = true
-  default     = ""
 }
 
 variable "FRONTEND_CERT" {
   type        = string
   description = "Base64 encoded gzip of the frontend sidecar cert pem file"
-  default     = ""
 }
 
 variable "SYSLOG_HOSTNAME" {
