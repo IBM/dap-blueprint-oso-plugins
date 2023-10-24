@@ -77,18 +77,18 @@ variable "PORT" {
 
 variable "COMPONENT_CERTS" {
   type        = string
-  description = "Base64 encoded gzip of the component certificate bundle pem file"
+  description = "Component certificate bundle pem file"
 }
 
 variable "BACKEND_KEY" {
   type        = string
-  description = "Base64 encoded gzip of the backend sidecar key pem file"
+  description = "Backend sidecar key pem file"
   sensitive   = true
 }
 
 variable "BACKEND_CERT" {
   type        = string
-  description = "Base64 encoded gzip of the backend sidecar cert pem file"
+  description = "Backend sidecar cert pem file"
 }
 
 variable "CLIENT_CERTS_ENABLED" {
