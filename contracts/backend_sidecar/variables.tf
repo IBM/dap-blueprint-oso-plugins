@@ -62,15 +62,15 @@ variable "COMPONENT_CA_CERT" {
   description = "Base64 encoded gzip of the component certificate bundle pem file"
 }
 
-variable "BACKEND_KEY" {
+variable "BACKEND_PLUGIN_KEY" {
   type        = string
-  description = "Base64 encoded gzip of the backend sidecar key pem file"
+  description = "Base64 encoded gzip of the backend plugin key pem file"
   sensitive   = true
 }
 
-variable "BACKEND_CERT" {
+variable "BACKEND_PLUGIN_CERT" {
   type        = string
-  description = "Base64 encoded gzip of the backend sidecar cert pem file"
+  description = "Base64 encoded gzip of the backend plugin cert pem file"
 }
 
 variable "SYSLOG_HOSTNAME" {

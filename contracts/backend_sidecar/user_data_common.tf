@@ -31,8 +31,8 @@ locals {
       "SSH_PORT": var.SSH_PORT,
       "PORT": var.PORT,
       "COMPONENT_CA_CERT": var.COMPONENT_CA_CERT,
-      "BACKEND_KEY": var.BACKEND_KEY,
-      "BACKEND_CERT": var.BACKEND_CERT,
+      "BACKEND_PLUGIN_KEY": var.BACKEND_PLUGIN_KEY,
+      "BACKEND_PLUGIN_CERT": var.BACKEND_PLUGIN_CERT,
     }
   }
   workload_template = {

@@ -94,15 +94,15 @@ variable "COMPONENT_CA_CERT" {
   description = "Base64 encoded gzip of the component certificate bundle pem file"
 }
 
-variable "FRONTEND_KEY" {
+variable "FRONTEND_PLUGIN_KEY" {
   type        = string
-  description = "Base64 encoded gzip of the frontend sidecar key pem file"
+  description = "Base64 encoded gzip of the frontend plugin key pem file"
   sensitive   = true
 }
 
-variable "FRONTEND_CERT" {
+variable "FRONTEND_PLUGIN_CERT" {
   type        = string
-  description = "Base64 encoded gzip of the frontend sidecar cert pem file"
+  description = "Base64 encoded gzip of the frontend plugin cert pem file"
 }
 
 variable "SYSLOG_HOSTNAME" {

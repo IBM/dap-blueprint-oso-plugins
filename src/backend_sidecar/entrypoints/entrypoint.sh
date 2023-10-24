@@ -13,8 +13,8 @@ mkdir -p /certs
 
 # Write certs to file
 echo "${COMPONENT_CA_CERT}" | base64 --decode | gzip --decompress > /certs/component-bundle.pem
-echo "${FRONTEND_CERT}" > /certs/frontend-certificate.pem
-echo "${FRONTEND_KEY}" > /certs/frontend-key.pem
+echo "${BACKEND_PLUGIN_CERT}" > /certs/backend-certificate.pem
+echo "${BACKEND_PLUGIN_KEY}" > /certs/backend-key.pem
 
 LOGDNA_TAG=backend_sidecar
 CONF_FILE=supervisord-backend_sidecar.conf

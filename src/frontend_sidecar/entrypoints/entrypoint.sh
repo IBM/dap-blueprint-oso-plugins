@@ -13,8 +13,8 @@ mkdir -p /certs
 
 # Write certs to file
 echo "${COMPONENT_CA_CERT}" | base64 --decode | gzip --decompress > /certs/component-bundle.pem
-echo "${FRONTEND_CERT}" > /certs/frontend-certificate.pem
-echo "${FRONTEND_KEY}" > /certs/frontend-key.pem
+echo "${FRONTEND_PLUGIN_CERT}" > /certs/frontend-certificate.pem
+echo "${FRONTEND_PLUGIN_KEY}" > /certs/frontend-key.pem
 
 mkdir -p /certs/txqueue
 echo "${TXQUEUE_CERT}" | base64 --decode | gzip --decompress > /certs/txqueue/mongo-client.pem
