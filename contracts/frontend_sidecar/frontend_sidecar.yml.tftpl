@@ -18,16 +18,16 @@ services:
       - "$${PORT}:$${PORT}"
       - "$${SSH_PORT}:22"
     environment:
-      ARGON2_SALT: ${tpl.ARGON2_SALT}
-      COS_API_KEY: ${tpl.COS_API_KEY}
-      COS_ID: ${tpl.COS_ID}
-      DAP_BACKUP_BUCKET: ${tpl.DAP_BACKUP_BUCKET}
-      DEPLOY_TIME_SECRET: ${tpl.DEPLOY_TIME_SECRET}
-      OLD_DEPLOY_TIME_SECRET: ${tpl.OLD_DEPLOY_TIME_SECRET}
-      TXQUEUE_HOST: ${tpl.TXQUEUE_HOST}
-      TXQUEUE_PORT: ${tpl.TXQUEUE_PORT}
-      TXQUEUE_CERT: ${tpl.TXQUEUE_CERT}
-      TXQUEUE_CA: ${tpl.TXQUEUE_CA}
+      ARGON2_SALT: "${tpl.ARGON2_SALT}"
+      COS_API_KEY: "${tpl.COS_API_KEY}"
+      COS_ID: "${tpl.COS_ID}"
+      DAP_BACKUP_BUCKET: "${tpl.DAP_BACKUP_BUCKET}"
+      DEPLOY_TIME_SECRET: "${tpl.DEPLOY_TIME_SECRET}"
+      OLD_DEPLOY_TIME_SECRET: "${tpl.OLD_DEPLOY_TIME_SECRET}"
+      TXQUEUE_HOST: "${tpl.TXQUEUE_HOST}"
+      TXQUEUE_PORT: "${tpl.TXQUEUE_PORT}"
+      TXQUEUE_CERT: "${tpl.TXQUEUE_CERT}"
+      TXQUEUE_CA: "${tpl.TXQUEUE_CA}"
       SSH_PUBKEY: $${SSH_PUBKEY}
       PORT: $${PORT}
       COMPONENT_CA_CERT: $${COMPONENT_CA_CERT}
