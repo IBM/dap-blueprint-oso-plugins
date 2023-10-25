@@ -7,7 +7,7 @@ resource "local_file" "backend_sidecar_docker_compose" {
     "${path.module}/backend_sidecar.yml.tftpl",
     { tpl = {
       image = var.SIDECAR_IMAGE,
-      BACKEND_ENDPOINT = var.BACKEND_ENDPOINT,
+      backend_endpoint = length(var.BACKEND_ENDPOINT) > 0 ? var.BACKEND_ENDPOINT : "$${BACKEND_ENDPOINT}",
     } },
   )
   filename = "backend_sidecar/docker-compose.yml"

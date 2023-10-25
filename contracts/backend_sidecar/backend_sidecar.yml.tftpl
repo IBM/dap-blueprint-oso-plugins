@@ -18,7 +18,7 @@ services:
       - "$${PORT}:$${PORT}" 
       - "$${SSH_PORT}:22"
     environment:
-      BACKEND_ENDPOINT: "${tpl.BACKEND_ENDPOINT}"
+      BACKEND_ENDPOINT: ${tpl.backend_endpoint}
       SSH_PUBKEY: $${SSH_PUBKEY}    
       PORT: $${PORT}
       COMPONENT_CA_CERT: $${COMPONENT_CA_CERT}
