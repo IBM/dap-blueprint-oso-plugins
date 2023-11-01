@@ -12,6 +12,7 @@ from flask_restx import Resource, Namespace, fields
 from filters import JsonFilter
 from frontend_sidecar import bulk_download, bulk_upload, backend_status
 
+
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 logger = logging.getLogger(__name__)
 logger.addFilter(JsonFilter(['password', 'client_secret']))
@@ -52,7 +53,8 @@ class Download(Resource):
                 contents = f.read()
                 os.remove(filepath)
                 confirmed_files.append({'id': filename, 'content': contents})
-        return { 'documents': confirmed_files, 'count': len(confirmed_files) }
+        return {'documents': confirmed_files, 'count': len(confirmed_files)}
+
 
 @api.route('/documents')
 class Upload(Resource):
@@ -73,8 +75,9 @@ class Upload(Resource):
         bulk_upload()
         return 'OK', 200
 
+
 @api.route('/status')
 class Status(Resource):
     def get(self):
         response, status_code = backend_status()
-        return { 'status': response }, status_code
+        return {'status': response}, status_code
