@@ -52,10 +52,7 @@ def load_fingerprints():
                 f'{fingerprint}, located in COMPONENT_FINGERPRINTS, is not a sha1 hash')
             raise f'{fingerprint}, located in COMPONENT_FINGERPRINTS, is not a sha1 hash'
 
-    return fingerprints
-
-
-authorized_fingerprints = load_fingerprints()
+    return fingerprint
 
 
 def bind_flask_before_request(sender: Flask, _) -> None:
@@ -97,4 +94,6 @@ def bind_flask_before_request(sender: Flask, _) -> None:
 
 
 def configure_flask_common(app: Flask) -> None:
+    global authorized_fingerprints
+    authorized_fingerprints = load_fingerprints()
     request_started.connect(bind_flask_before_request, app)

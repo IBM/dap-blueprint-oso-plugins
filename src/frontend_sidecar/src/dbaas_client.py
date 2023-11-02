@@ -2,11 +2,14 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-import json, os, uuid
+import json
+import os
+import uuid
 
 import dap_consts
 import dap_resource
 import dbaas
+
 
 class DBaaSClient:
 
@@ -19,7 +22,8 @@ class DBaaSClient:
         self.resource = dap_resource.DAPDBaaSResource(serviceid=serviceid)
 
     def dequeue_to_dir(self, save_dir):
-        docs = dbaas.dequeue_all(self.resource.txqueue_client, self.resource.queue_name, self.query)
+        docs = dbaas.dequeue_all(
+            self.resource.txqueue_client, self.resource.queue_name, self.query)
         print('Dequeued {} docs'.format(len(docs)))
         for i, doc in enumerate(docs):
             file_name = os.path.join(save_dir, str(uuid.uuid4()))
@@ -32,5 +36,6 @@ class DBaaSClient:
     def enqueue_file(self, file_name):
         with open(file_name) as f:
             doc = json.load(f)
-            dbaas.enqueue(self.resource.txqueue_client, self.resource.queue_name, doc)
+            dbaas.enqueue(self.resource.txqueue_client,
+                          self.resource.queue_name, doc)
             print('enqueued {}'.format(file_name))

@@ -66,6 +66,7 @@ COPY --from=python-bootstrap /app-root/dap-blueprint/src/dap_util /app-root/dap-
 
 ENV PATH="/opt/venv/bin:${PATH}"
 COPY ./src /app-root/src
+COPY --from=common-src ./pre_request.py /app-root/src/flask_util
 COPY ./entrypoints /app-root/entrypoints
 COPY ./nginx /app-root/nginx
 COPY ./logging /app-root/logging
