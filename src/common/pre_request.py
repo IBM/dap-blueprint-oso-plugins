@@ -50,12 +50,12 @@ def load_fingerprints():
         if not is_sha1_hash(fingerprint):
             logger.error(
                 f'{fingerprint}, located in COMPONENT_FINGERPRINTS, is not a sha1 hash')
-            raise f'{fingerprint}, located in COMPONENT_FINGERPRINTS, is not a sha1 hash'
+            raise Exception(f'{fingerprint}, located in COMPONENT_FINGERPRINTS, is not a sha1 hash')
 
     return fingerprint
 
 
-def bind_flask_before_request(sender: Flask, _) -> None:
+def bind_flask_before_request(sender: Flask, **extras) -> None:
     logger.info(
         f"HTTP Method: {request.method} URL Path: {request.path}")
 
