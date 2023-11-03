@@ -9,7 +9,7 @@ import os
 
 
 env = {
-    "COMPONENT_FINGERPRINTS": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+    "COMPONENT_FINGERPRINTS": "2874175a37463fcbdb77f063626ef1b0b62578c9",
 }
 
 
