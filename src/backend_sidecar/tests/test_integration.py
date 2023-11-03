@@ -24,8 +24,8 @@ def test_bulk_download(client, mocker, mock_session_get):
 
     assert response == {
         'documents': [
-            {'id': 'file2', 'content': 'test2'},
             {'id': 'file1', 'content': 'test1'},
+            {'id': 'file2', 'content': 'test2'},
         ],
         'count': 2
     }
