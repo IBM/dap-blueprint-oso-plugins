@@ -6,22 +6,14 @@
 
 # entrypoint for nginx
 touch /tmp/certs.pem
-if [ "${CLIENT_CERTS_ENABLED}" = "true" ]; then
-  true
-fi
-if [ "${MTLS_ENABLED}" = "true" ]; then
-  true
-fi
 
-if [ "${CLIENT_CERTS_ENABLED}" = "true" ] || [ "${MTLS_ENABLED}" = "true" ]; then
-  echo 'Starting envsubst'
-  HOSTNAME="https://dapcs.ibm.com" COMPONENT_DN="$joined" envsubst '\$PORT \$HOSTNAME' < /app-root/nginx/nginx.conf.template > /app-root/nginx/nginx.conf
-  echo 'Starting nginx'
-  nginx -c /app-root/nginx/nginx.conf -g 'daemon off;' &
-  # Wait for the Nginx process to finish
-  NGINX_PID=$!
-  wait $NGINX_PID
+echo 'starting envsubst'
+hostname="https://dapcs.ibm.com" component_dn="$joined" envsubst '\$port \$hostname' < /app-root/nginx/nginx.conf.template > /app-root/nginx/nginx.conf
+echo 'Starting nginx'
+nginx -c /app-root/nginx/nginx.conf -g 'daemon off;' &
+# Wait for the Nginx process to finish
+NGINX_PID=$!
+wait $NGINX_PID
 
-  # Exit with the same exit code as the Nginx process
-  exit $?
-fi
+# Exit with the same exit code as the Nginx process
+exit $?

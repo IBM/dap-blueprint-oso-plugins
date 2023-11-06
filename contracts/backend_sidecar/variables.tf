@@ -53,17 +53,6 @@ variable DCT_PUBKEY {
   default     = ""
 }
 
-variable "SSH_PUBKEY" {
-  type        = string
-  description = "SSH public key to access a sidecar container (should be used only for debugging)."
-  default     = ""
-}
-
-variable "SSH_PORT" {
-  type        = string
-  description = "SSH Port (should be used only for debugging)."
-}
-
 variable "BACKEND_ENDPOINT" {
   type        = string
   description = "Backend endpoint consisting of IP address/Hostname and port (xxx.xxx.xxx.xxx:pppp)."
@@ -75,61 +64,3 @@ variable "PORT" {
   default     = "4000"
 }
 
-variable "BRIDGE_FINGERPRINT" {
-  type        = string
-  description = "SHA-1 fingerprint of the bridge cert"
-}
-
-variable "COMPONENT_CA_CERT" {
-  type        = string
-  description = "CA cert pem file that the component certs are signed by"
-}
-
-variable "BACKEND_KEY" {
-  type        = string
-  description = "Base64 encoded gzip of the backend sidecar key pem file"
-  sensitive   = true
-}
-
-variable "BACKEND_CERT" {
-  type        = string
-  description = "Base64 encoded gzip of the backend sidecar cert pem file"
-}
-
-variable "CLIENT_CERTS_ENABLED" {
-  type        = string
-  description = "Enable client cert"
-  default     = "true"
-}
-
-variable "MTLS_ENABLED" {
-  type        = string
-  description = "Enable component mtls"
-  default     = "true"
-}
-
-variable "SYSLOG_HOSTNAME" {
-  type        = string
-  description = "Syslog server hostname"
-}
-
-variable "SYSLOG_PORT" {
-  type        = number
-  description = "Syslog server port number"
-}
-
-variable "SYSLOG_SERVER_CERT" {
-  type        = string
-  description = "Syslog server certificate"
-}
-
-variable "SYSLOG_CLIENT_CERT" {
-  type        = string
-  description = "Syslog server client certificate"
-}
-
-variable "SYSLOG_CLIENT_KEY" {
-  type        = string
-  sensitive   = true
-  description = "Syslog server client key"
-}
