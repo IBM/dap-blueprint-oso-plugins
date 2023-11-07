@@ -1,13 +1,6 @@
+# Copyright IBM Corp. All Rights Reserved.
 #
-# Licensed Materials - Property of IBM
-#
-# (c) Copyright IBM Corp. 2023
-#
-# The source code for this program is not published or otherwise
-# divested of its trade secrets, irrespective of what has been
-# deposited with the U.S. Copyright Office
-#
-
+# SPDX-License-Identifier: Apache-2.0
 
 import logging
 import sys
@@ -50,7 +43,8 @@ def load_fingerprints():
         if not is_sha1_hash(fingerprint):
             logger.error(
                 f'{fingerprint}, located in COMPONENT_FINGERPRINTS, is not a sha1 hash')
-            raise Exception(f'{fingerprint}, located in COMPONENT_FINGERPRINTS, is not a sha1 hash')
+            raise Exception(
+                f'{fingerprint}, located in COMPONENT_FINGERPRINTS, is not a sha1 hash')
 
     return fingerprint
 
