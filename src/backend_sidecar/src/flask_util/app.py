@@ -6,6 +6,8 @@ from flask import Flask
 from flask_restx import Api
 from flask_util.config import BaseConfig
 
+from . import pre_request
+
 
 def create_app(config: object, app_name=None, root_path=None):
 
@@ -28,6 +30,7 @@ def create_app(config: object, app_name=None, root_path=None):
     app = Flask(__name__, instance_relative_config=True)
 
     configure_app(app, config)
+    pre_request.configure_flask_common(app)
     configure_api(app)
     configure_logging(app)
 

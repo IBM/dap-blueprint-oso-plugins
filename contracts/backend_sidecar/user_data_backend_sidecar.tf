@@ -27,30 +27,26 @@ locals {
     }
   }
   backend_sidecar_workload = merge(local.workload_template, local.backend_sidecar_compose)
-  backend_sidecar_contract = yamlencode({
-    "env" : local.env,
-    "workload" : local.backend_sidecar_workload
-  })
 }
 
 
 # In this step we encrypt the fields of the contract and sign the env and workload field. The certificate to execute the 
 # encryption it built into the provider and matches the latest HPCR image. If required it can be overridden. 
 # We use a temporary, random keypair to execute the signature. This could also be overriden. 
-resource "hpcr_contract_encrypted" "backend_sidecar_contract" {
-  contract  = local.backend_sidecar_contract
+resource "hpcr_text_encrypted" "backend_sidecar_contract" {
+  text      = yamlencode(local.backend_sidecar_workload)
   cert      = var.HPCR_CERT
 }
 
 resource "local_file" "backend_sidecar_contract" {
   count    = var.DEBUG ? 1 : 0
-  content  = local.backend_sidecar_contract
+  content  = yamlencode(local.backend_sidecar_workload)
   filename = "backend_sidecar_contract.yml"
   file_permission = "0664"
 }
 
 resource "local_file" "backend_sidecar_contract_encrypted" {
-  content  = hpcr_contract_encrypted.backend_sidecar_contract.rendered
+  content  = hpcr_text_encrypted.backend_sidecar_contract.rendered
   filename = "backend_sidecar.yml"
   file_permission = "0664"
 }

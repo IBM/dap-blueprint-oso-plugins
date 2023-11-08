@@ -27,6 +27,7 @@ component_status_model = api.model('ComponentStatus', {
     'error': fields.String()
 })
 
+
 @api.route('/documents', methods=['POST'])
 class Upload(Resource):
     @api.doc(
@@ -41,6 +42,7 @@ class Upload(Resource):
         bulk_upload()
         return 'OK', 200
 
+
 @api.route('/documents', methods=['GET'])
 class Download(Resource):
     @api.doc(
@@ -53,7 +55,8 @@ class Download(Resource):
     def get(self):
         os.makedirs(consts.SIGNED_DIR, exist_ok=True)
         documents = bulk_download()
-        return { 'documents': documents, 'count': len(documents) }
+        return {'documents': documents, 'count': len(documents)}
+
 
 @api.route('/status', methods=['GET'])
 class Status(Resource):
@@ -61,4 +64,4 @@ class Status(Resource):
     @api.response(code=503, description='', model=component_status_model)
     def get(self):
         response, status_code = backend_status()
-        return { 'status': response }, status_code
+        return {'status': response}, status_code
