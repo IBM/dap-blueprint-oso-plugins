@@ -43,7 +43,7 @@ http {
     error_log /var/log/nginx/error.log debug; 
 
     listen ${PORT} ssl;
-    server_name  ${HOSTNAME};
+    server_name _;
 
     ssl_certificate /certs/frontend-certificate.pem;
     ssl_certificate_key /certs/frontend-key.pem;

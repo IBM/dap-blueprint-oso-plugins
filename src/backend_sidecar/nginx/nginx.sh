@@ -8,7 +8,7 @@
 touch /tmp/certs.pem
 
 echo 'starting envsubst'
-hostname="https://dapcs.ibm.com" component_dn="$joined" envsubst '\$port \$hostname' < /app-root/nginx/nginx.conf.template > /app-root/nginx/nginx.conf
+envsubst '\$PORT' </app-root/nginx/nginx.conf.template >/app-root/nginx/nginx.conf
 echo 'Starting nginx'
 nginx -c /app-root/nginx/nginx.conf -g 'daemon off;' &
 # Wait for the Nginx process to finish
