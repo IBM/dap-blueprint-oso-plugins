@@ -15,7 +15,7 @@ pycryptodomex==3.17
 asn1==2.2.0
 PyYAML==6.0
 jinja2==3.0.3
-gunicorn==20.1.0
+gunicorn==22.0.0
 
 urllib3
 requests
