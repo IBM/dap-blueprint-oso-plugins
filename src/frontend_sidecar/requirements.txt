@@ -4,7 +4,7 @@
 blinker==1.6.2
 flask==2.2.5
 flask_restx==1.1.0
-Werkzeug==2.2.3
+Werkzeug==3.0.3
 
 certifi
 jinja2==3.0.3
